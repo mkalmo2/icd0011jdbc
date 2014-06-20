@@ -1,20 +1,20 @@
 Harjutustund 3, Jdbc kasutamine
 
 1. Kirjutage meetod, mis loob Hsql andmebaasi.
-    Connection conn = null;
-    Statement stmt = null;
-    try {
-        Connection conn = DriverManager.getConnection(
-            jdbc:hsqldb:file:${user.home}/data/<kasutaja>/db;shutdown=true);
+   Connection conn = null;
+   Statement stmt = null;
+   try {
+       Connection conn = DriverManager.getConnection(
+           "jdbc:hsqldb:file:${user.home}/data/<kasutaja>/db;shutdown=true");
 
-        Class.forName("org.hsqldb.jdbcDriver");
-        stmt = conn.createStatement();
-        stmt.executeUpdate("CREATE TABLE person (name varchar(100))");
-    } finally {
-        DbUtils.closeQuietly(rset);
-        DbUtils.closeQuietly(stmt);
-        DbUtils.closeQuietly(conn);
-    }
+       Class.forName("org.hsqldb.jdbcDriver");
+       stmt = conn.createStatement();
+       stmt.executeUpdate("CREATE TABLE person (name varchar(100))");
+   } finally {
+       DbUtils.closeQuietly(stmt);
+       DbUtils.closeQuietly(conn);
+   }
+
 2. Sisestage baasi kaks nime.
 3. Küsige baasist tabeli "person" sisu ja näidake välja (System.out).
 4. Tehke eraldi klass Dao, mis pärineb klassist AbstractDao.
