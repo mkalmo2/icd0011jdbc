@@ -1,0 +1,32 @@
+Harjutustund 3, Jdbc kasutamine
+
+1. Kirjutage meetod, mis loob Hsql andmebaasi.
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+        Connection conn = DriverManager.getConnection(
+            jdbc:hsqldb:file:${user.home}/data/<kasutaja>/db;shutdown=true);
+
+        Class.forName("org.hsqldb.jdbcDriver");
+        stmt = conn.createStatement();
+        stmt.executeUpdate("CREATE TABLE person (name varchar(100))");
+    } finally {
+        DbUtils.closeQuietly(rset);
+        DbUtils.closeQuietly(stmt);
+        DbUtils.closeQuietly(conn);
+    }
+2. Sisestage baasi kaks nime.
+3. Küsige baasist tabeli "person" sisu ja näidake välja (System.out).
+4. Tehke eraldi klass Dao, mis pärineb klassist AbstractDao.
+   Pange andmete näitamise meetod loodud Dao-sse.
+   Tehke eraldi klass, mis loodud dao meetodeid väja kutsub.
+6. Kasutage SetupDao klassi, sql lausete sisestamiseks eraldi failist.
+   Selleks tehke "src" kataloogi fail "schema.sql", millesse kirjutage
+   sql laused. Käivitage SetupDao metod createSchema().
+
+Kui tahate andmebaasi tühjendada, siis kustutage oma kodukataloogist
+"data/<kasutaja>" alt failid ära.
+
+Projekti tooriku import: Eclipse-ist File -> Import... -> Projects from Git
+ja kirjutage https://bitbucket.org/mkalmo/exjdbc.git URI-ks.
+Kui Eclipse küsib kuhu projekt panna, siis öelge, näiteks H kettale.
