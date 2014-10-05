@@ -7,6 +7,14 @@ import org.apache.commons.dbutils.DbUtils;
 
 public abstract class AbstractDao {
 
+    static {
+        try {
+            Class.forName("org.hsqldb.jdbcDriver");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static final String DB_URL =
             "jdbc:hsqldb:file:${user.home}/data/jdbc;shutdown=true;";
 

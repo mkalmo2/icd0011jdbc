@@ -11,6 +11,7 @@ public class Main {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName("org.hsqldb.jdbcDriver");
             conn = DriverManager.getConnection(
                     "jdbc:hsqldb:file:${user.home}/data/jdbc/db;shutdown=true");
 
