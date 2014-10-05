@@ -8,20 +8,12 @@ import org.apache.commons.dbutils.DbUtils;
 public abstract class AbstractDao {
 
     public static final String DB_URL =
-            "jdbc:hsqldb:file:${user.home}/data/exJdbc;shutdown=true;";
+            "jdbc:hsqldb:file:${user.home}/data/jdbc;shutdown=true;";
 
     private Connection connection;
     protected PreparedStatement pst;
     protected Statement st;
     protected ResultSet rs;
-
-    static {
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     protected Connection getConnection() {
         try {
