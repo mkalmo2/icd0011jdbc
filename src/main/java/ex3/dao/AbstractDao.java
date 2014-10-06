@@ -16,7 +16,7 @@ public abstract class AbstractDao {
     }
 
     public static final String DB_URL =
-            "jdbc:hsqldb:file:${user.home}/data/jdbc;shutdown=true;";
+            "jdbc:hsqldb:file:${user.home}/data/jdbc/db;shutdown=true;";
 
     private Connection connection;
     protected PreparedStatement pst;
