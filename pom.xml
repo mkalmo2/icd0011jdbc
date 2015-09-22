@@ -5,34 +5,21 @@
   <artifactId>jdbc</artifactId>
   <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>ex jdbc</name>
-  <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-dbutils</groupId>
-      <artifactId>commons-dbutils</artifactId>
-      <version>1.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.ant</groupId>
-      <artifactId>ant</artifactId>
-      <version>1.9.2</version>
+      <version>2.3.3</version>
     </dependency>
   </dependencies>
   <build>
-    <finalName>jdbc</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <version>3.3</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
     </plugins>
