@@ -16,6 +16,7 @@ public class FileUtil {
             String str = null;
             while ((str = r.readLine()) != null) {
                 sb.append(str);
+                sb.append("\n");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

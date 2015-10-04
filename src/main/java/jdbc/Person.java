@@ -4,17 +4,25 @@ import java.text.MessageFormat;
 
 public class Person {
 
+    private Integer id;
     private String name;
-    private Integer age;
 
-    public Person(String name, Integer age) {
+    public Person(Integer id, String name) {
+        this.id = id;
         this.name = name;
-        this.age = age;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
     public String toString() {
-        return MessageFormat.format("{0} ({1})", name, age);
+        return MessageFormat.format("{0} (id: {1})", name, id);
     }
 
 }
