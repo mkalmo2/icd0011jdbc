@@ -1,28 +1,31 @@
 package jdbc;
 
-import java.text.MessageFormat;
-
 public class Person {
 
-    private Integer id;
+    private Long id;
     private String name;
+    private Integer age;
 
-    public Person(Integer id, String name) {
+    public Person(Long id, String name, int age) {
         this.id = id;
         this.name = name;
+        this.age = age;
     }
 
-    public Integer getId() {
-        return id;
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
     public String getName() {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return MessageFormat.format("{0} (id: {1})", name, id);
+    public Integer getAge() {
+        return age;
     }
 
+    public Long getId() {
+        return id;
+    }
 }
