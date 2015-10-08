@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.FileUtil;
+
 public class Main {
 
     public static String URL = "jdbc:hsqldb:file:${user.home}/data/jdbc/db;shutdown=true";
