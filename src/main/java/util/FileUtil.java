@@ -5,24 +5,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 
 public class FileUtil {
 
     public static String readFileFromClasspath(String pathOnClasspath) {
-        StringBuilder sb = new StringBuilder();
-        try (InputStream is = FileUtil.class.getClassLoader().getResourceAsStream(pathOnClasspath);
-             BufferedReader r = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-
-            String str = null;
-            while ((str = r.readLine()) != null) {
-                sb.append(str);
-                sb.append("\n");
+        try (InputStream is = FileUtil.class.getClassLoader().getResourceAsStream(pathOnClasspath)) {
+            if (is == null) {
+                throw new IllegalStateException("can't load file: " + pathOnClasspath);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
-        return sb.toString();
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
+
+            return buffer.lines().collect(Collectors.joining("\n"));
+
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 
 }
