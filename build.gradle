@@ -1,0 +1,31 @@
+apply plugin: 'war'
+
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile group: 'org.hsqldb',
+            name: 'hsqldb',
+            version: '2.4.0'
+
+    compile group: 'commons-dbcp',
+            name: 'commons-dbcp',
+            version: '1.4'
+
+    compile group: 'com.fasterxml.jackson.core',
+            name: 'jackson-databind',
+            version: '2.9.1'
+
+    compileOnly group: 'org.projectlombok',
+                name: 'lombok',
+                version: '1.16.18'
+}
+
+task runMain(type: JavaExec) {
+    main = 'jdbc.Main'
+    classpath = sourceSets.main.runtimeClasspath
+}

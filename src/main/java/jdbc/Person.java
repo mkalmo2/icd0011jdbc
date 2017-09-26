@@ -1,5 +1,8 @@
 package jdbc;
 
+import lombok.ToString;
+
+@ToString
 public class Person {
 
     private Long id;
