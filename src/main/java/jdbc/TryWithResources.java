@@ -9,7 +9,7 @@ public class TryWithResources {
 
             System.out.println("in try block");
 
-//            throw new RuntimeException("error");
+            // throw new RuntimeException("error");
 
         } catch (Exception e) {
             System.out.println("in catch block");
