@@ -15,12 +15,12 @@ public class DataSourceProvider {
         }
     }
 
-    private static String DB_URL = "jdbc:hsqldb:mem:db1";
+    private static String dbUrl = null;
 
     private static BasicDataSource dataSource = null;
 
-    public static void setDbUrl(String dbUrl) {
-        DB_URL = dbUrl;
+    public static void setDbUrl(String url) {
+        dbUrl = url;
     }
 
     public static DataSource getDataSource() {
@@ -28,10 +28,14 @@ public class DataSourceProvider {
             return dataSource;
         }
 
+        if (dbUrl == null) {
+            throw new IllegalStateException(
+                    "Database url not configured. Use setDbUrl()");
+        }
+
         dataSource = new BasicDataSource();
-        dataSource.setMaxActive(3);
         dataSource.setDriverClassName(JDBCDriver.class.getCanonicalName());
-        dataSource.setUrl(DB_URL);
+        dataSource.setUrl(dbUrl);
 
         return dataSource;
     }
