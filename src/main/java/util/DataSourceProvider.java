@@ -1,7 +1,6 @@
 package util;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.hsqldb.jdbc.JDBCDriver;
 
 import javax.sql.DataSource;
 
@@ -9,7 +8,7 @@ public class DataSourceProvider {
 
     static {
         try {
-            Class.forName(JDBCDriver.class.getCanonicalName());
+            Class.forName("org.hsqldb.jdbc.JDBCDriver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +33,7 @@ public class DataSourceProvider {
         }
 
         dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(JDBCDriver.class.getCanonicalName());
+        dataSource.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
         dataSource.setUrl(dbUrl);
 
         return dataSource;
