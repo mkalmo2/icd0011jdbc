@@ -6,14 +6,6 @@ import javax.sql.DataSource;
 
 public class DataSourceProvider {
 
-    static {
-        try {
-            Class.forName("org.hsqldb.jdbc.JDBCDriver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static String dbUrl = null;
 
     private static BasicDataSource dataSource = null;
@@ -33,7 +25,7 @@ public class DataSourceProvider {
         }
 
         dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
+        dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
         dataSource.setUrl(dbUrl);
 
         return dataSource;
