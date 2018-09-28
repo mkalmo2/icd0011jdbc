@@ -27,6 +27,7 @@ public class DataSourceProvider {
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
         dataSource.setUrl(dbUrl);
+        dataSource.setMaxActive(3);
 
         return dataSource;
     }
