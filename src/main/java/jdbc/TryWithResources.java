@@ -4,8 +4,9 @@ public class TryWithResources {
 
     public static void main(String[] args) {
 
-        try (MyAutoCloseable c1 = new MyAutoCloseable("c1");
-             MyAutoCloseable c2 = new MyAutoCloseable("c2")) {
+        MyAutoCloseable c1 = new MyAutoCloseable("c1");
+
+        try (c1; MyAutoCloseable c2 = new MyAutoCloseable("c2")) {
 
             System.out.println("in try block");
 

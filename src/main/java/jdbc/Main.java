@@ -1,21 +1,33 @@
 package jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import util.ConnectionInfo;
+import util.DbUtil;
+
+import java.sql.*;
 
 public class Main {
 
-    public static String URL = "jdbc:hsqldb:file:${user.home}/data/jdbc/db;shutdown=true";
-
     public static void main(String[] args) throws Exception {
 
-        try (Connection conn = DriverManager.getConnection(URL);
-             Statement stmt = conn.createStatement()) {
+        ConnectionInfo connectionInfo = DbUtil.loadConnectionInfo();
 
-            stmt.executeUpdate("...");
+        Connection conn = DriverManager.getConnection(
+                connectionInfo.getUrl(),
+                connectionInfo.getUser(),
+                connectionInfo.getPass());
+
+        try (conn; Statement stmt = conn.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery("select 42");
+
+            if (!rs.next()) {
+                throw new RuntimeException("unexpected error");
+            }
+
+            System.out.println(rs.getInt(1));
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
     }
-
 }

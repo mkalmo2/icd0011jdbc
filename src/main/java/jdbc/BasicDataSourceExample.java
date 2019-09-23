@@ -1,6 +1,8 @@
 package jdbc;
 
+import util.ConnectionInfo;
 import util.DataSourceProvider;
+import util.DbUtil;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -10,14 +12,19 @@ public class BasicDataSourceExample {
 
     public static void main(String[] args) throws SQLException {
 
-        DataSourceProvider.setDbUrl("jdbc:hsqldb:mem:my-database");
-        DataSource dataSource = DataSourceProvider.getDataSource(); // max 3 connections
-        System.out.println("DataSource class: " + dataSource.getClass());
+        ConnectionInfo connectionInfo = DbUtil.loadConnectionInfo();
+
+        DataSourceProvider.setConnectionInfo(connectionInfo);
+        DataSource dataSource = DataSourceProvider.getDataSource(); // max 2 connections
 
         Connection c1 = dataSource.getConnection();
 
         System.out.println("Connection class: " + c1.getClass());
         System.out.println("Connection instance identity: " + c1.hashCode());
+
+        Connection c2 = dataSource.getConnection();
+
+        System.out.println("Connection instance identity: " + c2.hashCode());
     }
 
 }

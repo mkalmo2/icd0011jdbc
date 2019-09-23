@@ -1,6 +1,6 @@
 
-INSERT INTO PERSON (id, name, age)
-  VALUES (NEXT VALUE FOR seq1, 'Jane', 20);
+INSERT INTO person (name, age) VALUES ('Alice', 20);
 
-INSERT INTO PERSON (id, name, age)
-  VALUES (NEXT VALUE FOR seq1, 'John', 21);
+INSERT INTO person (name, age) VALUES ('Bob', 21);
+
+

@@ -9,18 +9,25 @@ import java.util.stream.Collectors;
 public class FileUtil {
 
     public static String readFileFromClasspath(String pathOnClasspath) {
-        try (InputStream is = FileUtil.class.getClassLoader().getResourceAsStream(pathOnClasspath)) {
+        try (InputStream is = Thread.currentThread()
+                .getContextClassLoader()
+                .getResourceAsStream(pathOnClasspath)) {
+
             if (is == null) {
                 throw new IllegalStateException("can't load file: " + pathOnClasspath);
             }
 
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
-
-            return buffer.lines().collect(Collectors.joining("\n"));
+            return readStream(is);
 
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
+    }
+
+    public static String readStream(InputStream is) {
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
+
+        return buffer.lines().collect(Collectors.joining("\n"));
     }
 
 }

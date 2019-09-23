@@ -3,15 +3,27 @@ package util;
 import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 public class DataSourceProvider {
 
-    private static String dbUrl = null;
+    private static ConnectionInfo connectionInfo;
+    private static BasicDataSource dataSource;
 
-    private static BasicDataSource dataSource = null;
+    public static void setConnectionInfo(ConnectionInfo connectionInfo) {
+        DataSourceProvider.connectionInfo = connectionInfo;
+    }
 
-    public static void setDbUrl(String url) {
-        dbUrl = url;
+    public static void closePool() {
+        if (dataSource == null) {
+            return;
+        }
+
+        try {
+            dataSource.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static DataSource getDataSource() {
@@ -19,17 +31,18 @@ public class DataSourceProvider {
             return dataSource;
         }
 
-        if (dbUrl == null) {
+        if (connectionInfo == null) {
             throw new IllegalStateException(
-                    "Database url not configured. Use setDbUrl()");
+                    "Connection info is not configured. Use setConnectionInfo()");
         }
 
         dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-        dataSource.setUrl(dbUrl);
-        dataSource.setMaxActive(3);
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl(connectionInfo.getUrl());
+        dataSource.setUsername(connectionInfo.getUser());
+        dataSource.setPassword(connectionInfo.getPass());
+        dataSource.setMaxActive(2);
 
         return dataSource;
     }
-
 }

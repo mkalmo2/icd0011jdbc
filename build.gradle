@@ -1,25 +1,21 @@
 plugins {
-    id 'war'
+    id 'java'
 }
 
 repositories {
     jcenter()
 }
 
-sourceCompatibility = 8
+sourceCompatibility = 11
 
 dependencies {
-    compile group: 'org.hsqldb',
-            name: 'hsqldb',
-            version: '2.4.1'
+    compile group: 'org.postgresql',
+            name: 'postgresql',
+            version: '42.2.7'
 
     compile group: 'commons-dbcp',
             name: 'commons-dbcp',
             version: '1.4'
-
-    compile group: 'com.fasterxml.jackson.core',
-            name: 'jackson-databind',
-            version: '2.9.6'
 
     compile group: 'org.apache.logging.log4j',
             name: 'log4j-api',
@@ -31,14 +27,9 @@ dependencies {
 
     compileOnly group: 'org.projectlombok',
                 name: 'lombok',
-                version: '1.18.2'
+                version: '1.18.10'
 
     annotationProcessor group: 'org.projectlombok',
                 name: 'lombok',
-                version: '1.18.2'
-}
-
-task runMain(type: JavaExec) {
-    main = 'jdbc.Main'
-    classpath = sourceSets.main.runtimeClasspath
+                version: '1.18.10'
 }
