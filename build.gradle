@@ -13,9 +13,9 @@ dependencies {
             name: 'postgresql',
             version: '42.2.7'
 
-    compile group: 'commons-dbcp',
-            name: 'commons-dbcp',
-            version: '1.4'
+    compile group: 'org.apache.commons',
+            name: 'commons-dbcp2',
+            version: '2.7.0'
 
     compile group: 'org.apache.logging.log4j',
             name: 'log4j-api',

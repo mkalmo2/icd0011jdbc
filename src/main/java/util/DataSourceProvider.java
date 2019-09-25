@@ -1,6 +1,6 @@
 package util;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ public class DataSourceProvider {
         dataSource.setUrl(connectionInfo.getUrl());
         dataSource.setUsername(connectionInfo.getUser());
         dataSource.setPassword(connectionInfo.getPass());
-        dataSource.setMaxActive(2);
+        dataSource.setMaxTotal(2);
 
         return dataSource;
     }
