@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        ConnectionInfo connectionInfo = DbUtil.loadConnectionInfo();
+        ConnectionInfo connectionInfo = DbUtil.readConnectionInfo();
 
         Connection conn = DriverManager.getConnection(
                 connectionInfo.getUrl(),
