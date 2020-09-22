@@ -4,7 +4,7 @@ import java.util.Properties;
 
 public class DbUtil {
 
-    public static ConnectionInfo loadConnectionInfo() {
+    public static ConnectionInfo readConnectionInfo() {
         Properties properties = PropertyLoader.loadApplicationProperties();
 
         return new ConnectionInfo(

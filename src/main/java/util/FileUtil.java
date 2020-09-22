@@ -1,10 +1,9 @@
 package util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class FileUtil {
 
@@ -25,9 +24,9 @@ public class FileUtil {
     }
 
     public static String readStream(InputStream is) {
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
-
-        return buffer.lines().collect(Collectors.joining("\n"));
+        try (Scanner scanner = new Scanner(is, StandardCharsets.UTF_8.name())) {
+            return scanner.useDelimiter("\\A").next();
+        }
     }
 
 }
