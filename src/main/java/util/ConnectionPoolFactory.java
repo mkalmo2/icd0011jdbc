@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class ConnectionPoolFactory {
 
     public DataSource createConnectionPool() {
-        ConnectionInfo connectionInfo = DbUtil.readConnectionInfo();
+        ConnectionInfo connectionInfo = ConfigUtil.readConnectionInfo();
 
         BasicDataSource pool = new BasicDataSource();
         pool.setDriverClassName("org.postgresql.Driver");

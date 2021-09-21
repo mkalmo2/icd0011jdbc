@@ -1,7 +1,7 @@
 package jdbc;
 
 import util.ConnectionInfo;
-import util.DbUtil;
+import util.ConfigUtil;
 
 import java.sql.*;
 
@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        ConnectionInfo connectionInfo = DbUtil.loadConnectionInfo();
+        ConnectionInfo connectionInfo = ConfigUtil.readConnectionInfo();
 
         Connection conn = DriverManager.getConnection(
                 connectionInfo.getUrl(),

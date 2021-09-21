@@ -2,7 +2,7 @@ package util;
 
 import java.util.Properties;
 
-public class DbUtil {
+public class ConfigUtil {
 
     public static ConnectionInfo readConnectionInfo() {
         Properties properties = PropertyLoader.loadApplicationProperties();
