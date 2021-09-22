@@ -6,9 +6,6 @@ import org.apache.logging.log4j.Logger;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ListProvider {
 
@@ -18,36 +15,25 @@ public class ListProvider {
 
         logger.debug("ListProvider.getList() called");
 
-        MyList list = new MyListImpl();
-        return (MyList) Proxy.newProxyInstance(
+        MyList proxy = (MyList) Proxy.newProxyInstance(
                 Thread.currentThread().getContextClassLoader(),
                 new Class[] { MyList.class },
-                new DynamicInvocationHandler(list));
+                new DynamicInvocationHandler());
+
+        return new MyListImpl();
     }
 
     private static class DynamicInvocationHandler implements InvocationHandler {
 
-        private MyList list;
-
-        public DynamicInvocationHandler(MyList list) {
-            this.list = list;
-        }
-
         @Override
-        public Object invoke(Object proxy, Method method, Object[] args)
-                throws Throwable {
+        public Object invoke(Object proxy, Method method, Object[] args) {
 
-            var stream = args == null
-                    ? Stream.empty()
-                    : Arrays.stream(args);
+            // this will be called for every method that is invoked on the proxy
 
-            String argsString = stream
-                    .map(Object::toString)
-                    .collect(Collectors.joining(", "));
+            // delegate to underlying object
+            // method.invoke(object, args);
 
-            logger.debug("%s(%s)".formatted(method.getName(), argsString));
-
-            return method.invoke(list, args);
+            return null;
         }
     }
 }
