@@ -12,9 +12,9 @@ public class ConnectionPoolFactory {
 
         BasicDataSource pool = new BasicDataSource();
         pool.setDriverClassName("org.postgresql.Driver");
-        pool.setUrl(connectionInfo.getUrl());
-        pool.setUsername(connectionInfo.getUser());
-        pool.setPassword(connectionInfo.getPass());
+        pool.setUrl(connectionInfo.url());
+        pool.setUsername(connectionInfo.user());
+        pool.setPassword(connectionInfo.pass());
         pool.setMaxTotal(2);
         pool.setInitialSize(1);
 

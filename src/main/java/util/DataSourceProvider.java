@@ -38,9 +38,9 @@ public class DataSourceProvider {
 
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl(connectionInfo.getUrl());
-        dataSource.setUsername(connectionInfo.getUser());
-        dataSource.setPassword(connectionInfo.getPass());
+        dataSource.setUrl(connectionInfo.url());
+        dataSource.setUsername(connectionInfo.user());
+        dataSource.setPassword(connectionInfo.pass());
         dataSource.setMaxTotal(2);
 
         return dataSource;

@@ -12,9 +12,9 @@ public class Main {
         ConnectionInfo connectionInfo = ConfigUtil.readConnectionInfo();
 
         Connection conn = DriverManager.getConnection(
-                connectionInfo.getUrl(),
-                connectionInfo.getUser(),
-                connectionInfo.getPass());
+                connectionInfo.url(),
+                connectionInfo.user(),
+                connectionInfo.pass());
 
         try (conn; Statement stmt = conn.createStatement()) {
 
